@@ -13,6 +13,11 @@
 /* prettier-ignore */
 * { box-sizing: border-box; }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 body {
   -webkit-font-smoothing: antialiased;
   color: var(--color-darkest);
@@ -21,21 +26,23 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* prettier-ignore */
-header,
-#hero { background: var(--bg-warmer); }
+#hero {
+  background-image: url('https://i.ibb.co/gjH8yCP/oliver-illo-1.png');
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
 
-header .align,
-#who .align,
-footer .align {
-  align-items: center;
-  text-align: center;
+/* prettier-ignore */
+.warm { background: var(--bg-warm); }
+.warmer {
+  background: var(--bg-warmer);
 }
 
 .align {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem;
+  gap: 2rem;
   margin: 0 auto;
   max-width: 75rem;
   padding: 1.5rem;
@@ -46,8 +53,11 @@ footer .align {
   font-weight: 900;
 }
 
-/* prettier-ignore */
-.fill { flex: 1; }
+.fill {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
 
 a {
   color: inherit;
@@ -77,14 +87,28 @@ button:hover {
 }
 
 /* prettier-ignore */
-section { padding: 4rem; }
+section { padding: 3rem; }
+
+.blur {
+  border-radius: 1rem;
+  backdrop-filter: blur(8px);
+}
 
 .stack {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
   flex: 1;
-  gap: 1.5rem;
+  gap: 1rem;
+  justify-content: center;
+}
+.fill.stack {
+  flex: 1 0 18rem;
+}
+
+.center {
+  align-items: center;
+  text-align: center;
 }
 
 h1 {
@@ -135,9 +159,8 @@ p {
 }
 
 #sections {
-  background: var(--bg-warm);
-  padding: 0 0 0 30vw;
-  position: relative;
+  background: var(--bg-warm) url('https://i.ibb.co/Fss3RSN/oliver-illo-2.png') no-repeat top left / 40vw;
+  padding: 0 0 0 40vw;
 }
 
 .secondary-action {
@@ -157,7 +180,7 @@ p {
 footer {
   background: var(--color-darkest);
   color: #fff;
-  padding: 4rem;
+  padding: 3rem;
   text-align: center;
 }
 
@@ -165,9 +188,14 @@ footer {
   border-bottom: 1px solid #fff3;
   border-top: 1px solid #fff3;
   display: flex;
-  margin: 2rem 0;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin: 1rem 0;
   min-width: 50rem;
   padding: 2rem 0;
+}
+.columns .stack {
+  flex: 1 0 11rem;
 }
 .columns :last-child {
   align-items: flex-end;
@@ -180,4 +208,51 @@ h3 {
 
 footer p {
   text-align: left;
+}
+
+@media (max-width: 50rem) {
+  section,
+  footer {
+    padding: 0;
+  }
+  #hero {
+    background-position: bottom;
+    padding: 0 0 50vh;
+  }
+  #hero .fill + .fill {
+    display: none;
+  }
+  #sections {
+    background-position: top;
+    background-size: contain;
+    padding: 50vh 0 0;
+  }
+  .columns {
+    min-width: unset;
+  }
+}
+
+/* how */
+
+.image {
+  flex: 1;
+}
+.img {
+  background: #eee;
+  border-radius: 2em;
+  height: 600px;
+  width: 300px;
+}
+
+section .align > *:not(.number) {
+  position: relative;
+}
+.number {
+  color: var(--color-darkest);
+  font-size: 4.5rem;
+  font-weight: 900;
+  line-height: 1;
+  opacity: 0.05;
+  position: absolute;
+  transform: translate(-1.5rem, -2rem);
 }
